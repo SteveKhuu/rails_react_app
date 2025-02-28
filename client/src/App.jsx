@@ -7,8 +7,8 @@ function App() {
   return (
     <Router>
       <div className="app">
-        <h1>React on Rails Blog</h1>
-        <p>Find this application layout in client/src/App.jsx</p>
+        <h1>Homebase Planets Log</h1>
+        <p>Beep Boop</p>
         <NavBar />
         <AppRoutes />
       </div>

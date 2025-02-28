@@ -2,18 +2,18 @@
 import React, { useState, useEffect } from "react";
 import { API_URL } from "../../constants";
 
-function PostsList() {
-  const [posts, setPosts] = useState([]);
+function PlanetList() {
+  const [planets, setPlanets] = useState([]);
   const [, setLoading] = useState(true);
   const [, setError] = useState(null);
   // Fetch posts from the API
   useEffect(() => {
-    async function loadPosts() {
+    async function loadPlanets() {
       try {
         const response = await fetch(API_URL);
         if (response.ok) {
           const json = await response.json();
-          setPosts(json);
+          setPlanets(json);
         } else {
           throw response;
         }
@@ -24,19 +24,19 @@ function PostsList() {
         setLoading(false);
       }
     }
-    loadPosts();
+    loadPlanets();
   }, []);
 
   return (
     <div>
-      {posts.map((post) => (
-        <div key={post.id} className="post-container">
-          <h2>{post.title}</h2>
-          <p>{post.body}</p>
+      {planets.map((planet) => (
+        <div key={planet.id} className="post-container">
+          <h2>{planet.title}</h2>
+          <p>{planet.body}</p>
         </div>
       ))}
     </div>
   );
 }
 
-export default PostsList;
+export default PlanetList;

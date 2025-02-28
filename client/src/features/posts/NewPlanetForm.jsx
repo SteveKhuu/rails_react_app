@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { API_URL } from "../../constants";
 
-function NewPostForm() {
+function NewPlanetForm() {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
   const navigate = useNavigate();
@@ -16,13 +16,17 @@ function NewPostForm() {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        'Access-Control-Allow-Origin': '*',
+        'Access-Control-Allow-Credentials': 'true',
+        'Access-Control-Allow-Headers': 'Origin, Content-Type, X-Amz-Date, Authorization, X-Api-Key, X-Amz-Security-Token, locale',
+        'Access-Control-Allow-Methods': 'GET, POST',
       },
       body: JSON.stringify(postData),
     });
 
     if (response.ok) {
       const { id } = await response.json();
-      navigate(`/posts/${id}`);
+      navigate(`/planets/${id}`);
     } else {
       console.log("An error occurred.");
     }
@@ -30,7 +34,7 @@ function NewPostForm() {
 
   return (
     <div>
-      <h2>Create a New Post</h2>
+      <h2>Create a New Planet</h2>
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="titleInput">Title:</label>
@@ -52,11 +56,11 @@ function NewPostForm() {
           />
         </div>
         <div>
-          <button type="submit">Create Post</button>
+          <button type="submit">Create Planet</button>
         </div>
       </form>
     </div>
   );
 }
 
-export default NewPostForm;
+export default NewPlanetForm;
